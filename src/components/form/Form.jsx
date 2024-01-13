@@ -3,31 +3,32 @@ import styles from './Form.module.scss'
 import { useForm } from 'react-hook-form'
 
 
-const Form = ({title}) => {
+const Form = ({title, getDataForm, firebaseError}) => {
 
   const {register, handleSubmit, formState: {errors}, reset} = useForm({
     // 옵션으로 인풋태그 벗어날때 유효성 체크 자동으로 해줄수 있는 블러, 그리고 변할때마다 체크해주는 체인지
-    mode: "onChange"
+    mode: "onBlur"
   })
 
   // 각 인풋 별 밸류가 이메일과 패스워드이다.
   const onSubmit = ({email, password}) => {
-    console.log(email, password);
+    getDataForm(email, password);
+    reset();  
   }
 
   const userEmail = {
     required: "필수 필드입니다.",
     pattern: {
       message: "입력하신 이메일 주소가 올바르지 않습니다.",
-      value: /^(?=.*[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/gm,
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
     }
   }
 
   const userPassword= {
     required: "필수 필드입니다.",
     minLength: {
-      value: 4,
-      message: "최소 4자입니다."
+      value: 6,
+      message: "최소 6자입니다."
     },
     maxLength: {
       value: 13,
@@ -72,12 +73,12 @@ const Form = ({title}) => {
           </span>
         </div>
         }
-        <div>
-          <span className={styles.form_error}></span>
-        </div>
       </div>
       <button type="submit">{title}</button>
-      <span className={styles.form_error}></span>
+      {firebaseError && (
+        <span className={styles.form_error}>{firebaseError}</span>
+
+      )}
     </form>
   );
 };
