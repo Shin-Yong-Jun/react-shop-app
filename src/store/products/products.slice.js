@@ -3,10 +3,15 @@ import axios from "axios";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async (thunkAPI) => {
-    console.log(thunkAPI);
+  async (category, thunkAPI) => {
     try {
-      const response = await axios.get("https://fakestoreapi.com/products")
+      let response;
+      if(category) {
+        response = await axios.get(`https://fakestoreapi.com/products/category/${category}`)
+      } else {
+        response = await axios.get("https://fakestoreapi.com/products")
+      }
+
       console.log("@@@", response)
       return response.data; // payload
     } catch (e) {
@@ -37,7 +42,7 @@ export const productsSlice = createSlice({
         state.isLoading = false;
         state.products = action.payload;
       })
-      .addCase(fetchProducts.rejected, (state)=> {
+      .addCase(fetchProducts.rejected, (state, action)=> {
         state.isLoading = false;
         state.error = action.payload;
       })

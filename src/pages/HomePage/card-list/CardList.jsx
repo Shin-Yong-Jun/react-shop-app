@@ -7,10 +7,12 @@ import CardItem from '../card-list/cart-item/CardItem';
 const CardList = () => {
   const dispatch = useAppDispatch()
   const {products} = useAppSelector(state => state.productsSlice);
+  const category = useAppSelector(state => state.categoriesSlice);
+
 
   useEffect(() => {
-    dispatch(fetchProducts(styles));
-  }, [])
+    dispatch(fetchProducts(category?.toLowerCase()));
+  }, [category])
   
 
   return (
