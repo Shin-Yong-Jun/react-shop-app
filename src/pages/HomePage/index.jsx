@@ -1,8 +1,8 @@
 import React from 'react'
-import CardList from '../../components/CardList'
-import CardSkeleton from '../../components/CardSkeleton'
-import CountProducts from '../../components/CountProducts'
-import FiltersCategory from '../../components/FiltersCategory'
+import CardList from '../HomePage/card-list/CardList'
+import CardSkeleton from '../HomePage/card-skeleton/CardSkeleton'
+import CountProducts from '../HomePage/count-products/CountProducts'
+import FiltersCategory from '../HomePage/filters-category/FiltersCategory'
 
 const HomePage = () => {
   return (
