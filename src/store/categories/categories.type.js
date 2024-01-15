@@ -1,7 +1,7 @@
 export const CategoriesName = {
   All: "",
   Electronics: "Electronics",
-  Jewerly: "Jewerly",
+  Jewelery: "Jewelery",
   MensClothing: "Men's Clothing",
   WomensClothing: "Women's Clothing"
 }
