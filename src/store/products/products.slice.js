@@ -12,7 +12,6 @@ export const fetchProducts = createAsyncThunk(
         response = await axios.get("https://fakestoreapi.com/products")
       }
 
-      console.log("@@@", response)
       return response.data; // payload
     } catch (e) {
       return thunk.rejectWithValue("Error Loading products");
