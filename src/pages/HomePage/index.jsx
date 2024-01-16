@@ -12,7 +12,6 @@ const HomePage = () => {
         <FiltersCategory />
         <CountProducts />
         <CardList />
-        <CardSkeleton />
       </div>
     </div>
   )
