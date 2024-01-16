@@ -14,7 +14,6 @@ const CardList = () => {
 
   useEffect(() => {
     dispatch(fetchProducts(category?.toLowerCase()));
-    console.log([category])
   },[category])
   
   if(isLoading) return <CardSkeleton/>;
