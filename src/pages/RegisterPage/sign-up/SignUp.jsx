@@ -24,6 +24,7 @@ const SignUp = () => {
         token: userCredential.user.refreshToken,
         id: userCredential.user.uid
       }))
+      dispatch(setUserId(userCredential.user.uid));
       navigate('/');
     })
     .catch((error) => {
