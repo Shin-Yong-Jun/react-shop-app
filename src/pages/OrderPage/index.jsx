@@ -1,8 +1,22 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
+
 
 const OrderPage = () => {
+  //로그인한 사람만 들어오는 페이지이기에 useAuth를 사용한다.
+  
+  const {isAuth} = useAuth()
+  
+  if(!isAuth) return <Navigate to="/"/>;
+  
   return (
-    <div>OrderPage</div>
+    <div className="page">
+      <div className="continer">
+        <h1>주문 히스토리</h1>
+
+      </div>
+    </div>
   )
 }
 
