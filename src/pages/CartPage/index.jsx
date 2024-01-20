@@ -9,7 +9,7 @@ const CartPage = () => {
   return (
     <div className='page'>
       {!products.length ? (
-        <CartEmpty title= "" />
+        <CartEmpty title= "장바구니" />
       ):(
         <div className='container'>
           <h1>장바구니</h1>
