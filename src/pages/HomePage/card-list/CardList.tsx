@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styles from './CardList.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { fetchProducts } from '../../../store/products/products.slice';
-import CardItem from '../card-list/cart-item/CardItem';
+import CardItem from './cart-item/CardItem';
 import CardSkeleton from '../card-skeleton/CardSkeleton';
 
 const CardList = () => {
