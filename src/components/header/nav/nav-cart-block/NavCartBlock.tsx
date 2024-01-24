@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../../../hooks/redux";
 import { getTotalPrice } from "../../../../store/cart/cart.slice";
 import styles from "./NavCartBlock.module.scss"
@@ -6,12 +6,12 @@ import NavCartList from "./nav-cart-list/NavCartList";
 import { Link } from "react-router-dom";
 
 const NavCartBlock = () => {
-  const { totalPrice, product } = useAppSelector((state) => state.cartSlice);
+  const { totalPrice, products } = useAppSelector((state) => state.cartSlice);
   const dispatch =  useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTotalPrice(product));
-  }, [])
+    dispatch(getTotalPrice());
+  }, [products])
   
 
   return (

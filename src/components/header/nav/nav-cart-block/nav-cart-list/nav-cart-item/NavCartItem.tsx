@@ -1,11 +1,16 @@
-import React from 'react'
 import styles from './NavCartItem.module.scss'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../../../../../hooks/redux'
 import { deleteFromCart } from '../../../../../../store/cart/cart.slice'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { IProduct } from '../../../../../../store/products/products.type'
+import { FC } from 'react'
 
-const NavCartItem = ({item}) => {
+type NavCartItemProps = {
+  item: IProduct;
+}
+
+const NavCartItem: FC<NavCartItemProps> = ({item}) => {
 
   const dispatch = useAppDispatch();
   const deleteProduct = () => {

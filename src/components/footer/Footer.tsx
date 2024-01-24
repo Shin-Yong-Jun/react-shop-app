@@ -1,4 +1,3 @@
-import React from 'react'
 import {BsGithub} from 'react-icons/bs'
 import styles from './Footer.module.scss'
 
