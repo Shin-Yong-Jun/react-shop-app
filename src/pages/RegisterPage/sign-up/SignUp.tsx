@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import app from "../../../firebase";
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../store/user/user.slice';
-
+import { setUserId } from '../../../store/cart/cart.slice';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const SignUp = () => {
 
   const dispatch = useDispatch();
 
-  const handleSignupAndLogin= (email, password) => {
+  const handleSignupAndLogin= (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // 리덕스 스토어에 담는 로직

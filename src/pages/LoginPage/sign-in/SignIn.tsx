@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Form from '../../../components/form/Form'
 import { useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -14,7 +14,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
 
   const auth = getAuth(app);  
-  const handdleLogin = (email, password) => {
+  const handdleLogin = (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // 리덕스 로직

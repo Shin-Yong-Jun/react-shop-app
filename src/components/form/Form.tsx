@@ -1,17 +1,26 @@
-import React from 'react'
+import { FC } from 'react'
 import styles from './Form.module.scss'
-import { useForm } from 'react-hook-form'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
+type FormProps = {
+  title: string;
+  getDataForm: (email:string, password:string) => void;
+  firebaseError: string;
+}
 
-const Form = ({title, getDataForm, firebaseError}) => {
+type Inputs = {
+  email: string;
+  password: string; 
+}
+const Form: FC<FormProps> = ({title, getDataForm, firebaseError}) => {
 
-  const {register, handleSubmit, formState: {errors}, reset} = useForm({
+  const {register, handleSubmit, formState: {errors}, reset} = useForm<Inputs>({
     // 옵션으로 인풋태그 벗어날때 유효성 체크 자동으로 해줄수 있는 블러, 그리고 변할때마다 체크해주는 체인지
     mode: "onBlur"
   })
 
   // 각 인풋 별 밸류가 이메일과 패스워드이다.
-  const onSubmit = ({email, password}) => {
+  const onSubmit: SubmitHandler<FieldValues> = ({email, password}) => {
     getDataForm(email, password);
     reset();  
   }
