@@ -29,8 +29,9 @@ const Checkout = () => {
         </p>
 
         {isAuth ? 
-        <button className={styles.checkout_button}
-                onClick={()=> sendOrder()}
+        <button 
+          className={styles.checkout_button}
+          onClick={()=> sendOrder()}
         >
           계산하기
         </button>

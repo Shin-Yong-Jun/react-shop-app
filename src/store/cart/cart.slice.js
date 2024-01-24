@@ -9,26 +9,26 @@ export const postOrder = createAsyncThunk(
       await axios.post(
         "https://65a8d0b1219bfa371867ad21.mockapi.io/orders",
         order
-    )
-      thunkAPI.dispatch(sendOrder())
+      );
+      thunkAPI.dispatch(sendOrder());
     } catch (error) {
       return thunkAPI.rejectWithValue("Error sending order");
     }
   }
-)
+);
 
 //======================
 
-
 const initialState = {
+  products: localStorage.getItem("cartProducts")
+    ? JSON.parse(localStorage.getItem("cartProducts"))
+    : [],
+  totalPrice: 0,
 
-  products: localStorage.getItem("cartProducts") ? 
-    JSON.parse(localStorage.getItem("cartProducts")) : [],
-    totalPrice: 0,
-
-    userId: localStorage.getItem("userId") ? 
-      JSON.parse(localStorage.getItem("userId")) : "",
-      userId: "",
+  userId: localStorage.getItem("userId")
+    ? JSON.parse(localStorage.getItem("userId"))
+    : "",
+  userId: "",
 };
 
 export const cartSlice = createSlice({
@@ -49,56 +49,58 @@ export const cartSlice = createSlice({
       state.products.push({
         ...action.payload,
         quantity: 1,
-        total: action.payload.price
-      })
+        total: action.payload.price,
+      });
 
-      localStorage.setItem('cartProducts', JSON.stringify(state.products))
+      localStorage.setItem("cartProducts", JSON.stringify(state.products));
     },
     deleteFromCart: (state, action) => {
-      state.products = state.products.filter((item) => item.id !== action.payload)
+      state.products = state.products.filter(
+        (item) => item.id !== action.payload
+      );
 
-      localStorage.setItem('cartProducts', JSON.stringify(state.products))
+      localStorage.setItem("cartProducts", JSON.stringify(state.products));
     },
 
     incrementProduct: (state, action) => {
-      state.products = state.products.map((item) => 
-        item.id === action.payload 
-        ? {
-          ...item,
-          quantity: item.quantity + 1,
-          total: item.price * (item.quantity + 1)
-        } 
-        : item
-      )
-      localStorage.setItem('cartProducts', JSON.stringify(state.products))
+      state.products = state.products.map((item) =>
+        item.id === action.payload
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+              total: item.price * (item.quantity + 1),
+            }
+          : item
+      );
+      localStorage.setItem("cartProducts", JSON.stringify(state.products));
     },
 
     decrementProduct: (state, action) => {
-      state.products = state.products.map((item) => 
-        item.id === action.payload 
-        ? {
-          ...item,
-          quantity: item.quantity - 1,
-          total: item.price * (item.quantity - 1)
-        } 
-        : item
-      )
-      localStorage.setItem('cartProducts', JSON.stringify(state.products))
+      state.products = state.products.map((item) =>
+        item.id === action.payload
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+              total: item.price * (item.quantity - 1),
+            }
+          : item
+      );
+      localStorage.setItem("cartProducts", JSON.stringify(state.products));
     },
     getTotalPrice: (state) => {
       state.totalPrice = state.products.reduce(
-        (acc, item)=> (acc+=item.total),
+        (acc, item) => (acc += item.total),
         0
-        )
+      );
     },
 
     // 결제 누르면 cartProducts 상태를 비워주는 것!
     sendOrder: (state) => {
       state.products = [];
-      localStorage.setItem('cartProducts', JSON.stringify(state.products))
-    }
+      localStorage.setItem("cartProducts", JSON.stringify(state.products));
+    },
   },
-})
+});
 
 export const {
   addToCart,
@@ -106,10 +108,9 @@ export const {
   incrementProduct,
   decrementProduct,
   getTotalPrice,
-  setUserId, 
+  setUserId,
   removeUserId,
   sendOrder,
 } = cartSlice.actions;
-
 
 export default cartSlice.reducer;
