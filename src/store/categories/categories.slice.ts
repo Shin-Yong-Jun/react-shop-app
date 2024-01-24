@@ -1,5 +1,5 @@
 import { CategoriesName } from "./categories.type";
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = CategoriesName.All; 
@@ -8,7 +8,7 @@ export const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-    setActiveCategory: (_, action) => 
+    setActiveCategory: (_, action: PayloadAction<CategoriesName>) => 
       action.payload,
   }
 });
