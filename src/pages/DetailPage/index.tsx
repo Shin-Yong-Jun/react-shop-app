@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { fetchProduct } from '../../store/products/product.slice';
@@ -38,7 +38,7 @@ const DetailPage = () => {
           <h3>{product.category}</h3>
           <h1>{product.title}</h1>
           <h4>$ {product.price}</h4>
-          <p>{product.card_description}</p>
+          <p>{product.description}</p>
           <div>
             <button
               disabled={productMatching}

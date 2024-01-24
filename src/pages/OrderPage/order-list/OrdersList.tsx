@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useAuth } from '../../../hooks/useAuth'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { fetchOrder } from '../../../store/order/order.slice';
