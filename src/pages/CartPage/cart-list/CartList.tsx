@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAppSelector } from '../../../hooks/redux'
 import CartItem from './cart-item/CartItem'
 import styles from './CartList.module.scss'

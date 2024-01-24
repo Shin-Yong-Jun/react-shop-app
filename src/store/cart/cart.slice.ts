@@ -4,7 +4,7 @@ import { IProduct } from "../products/products.type";
 
 export const postOrder = createAsyncThunk(
   "cart/postOrder",
-  async (order, thunkAPI) => {
+  async (order: CartState, thunkAPI) => {
     //order가 Checkout컴포넌트의 postOrder함수의 매개변수 cart 이다.
     try {
       await axios.post(

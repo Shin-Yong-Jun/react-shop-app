@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux'
 import { getTotalPrice, postOrder } from '../../../store/cart/cart.slice';
 import styles from './Checkout.module.scss'
